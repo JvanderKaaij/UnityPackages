@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:ObjectField label="plot_object" name="plot_object" />
+    <uie:CurveField label="plot_curve" name="plot_curve" style="height: 241px; flex-direction: column;" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 20px;">
+        <ui:Button text="Save as CSV" display-tooltip-when-elided="true" name="save_btn" style="bottom: 0; justify-content: flex-start; align-self: center; margin-top: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>
