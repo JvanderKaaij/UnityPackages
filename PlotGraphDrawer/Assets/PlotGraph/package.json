@@ -1,0 +1,12 @@
+{
+  "name": "com.uva.plotgraph",
+  "version": "0.0.2",
+  "displayName": "Plot Graph",
+  "description": "Editor Graph to Plot variables",
+  "unity": "2022.3",
+  "author": {
+    "organisation": "University of Amsterdam",
+    "name": "Joey van der Kaaij",
+    "email": "j.g.vanderkaaij@uva.nl"
+  }
+}

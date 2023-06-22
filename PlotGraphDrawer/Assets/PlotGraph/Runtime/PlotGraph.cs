@@ -7,10 +7,11 @@ public class PlotGraph : MonoBehaviour
     private AnimationCurve curve;
     private float _currentValue;
     public Action OnUpdate;
-    
+    private float lastClearTime;
     void Start()
     {
         curve = new AnimationCurve();
+        lastClearTime = Time.time;
     }
 
     public AnimationCurve GetCurve()
@@ -23,12 +24,18 @@ public class PlotGraph : MonoBehaviour
         _currentValue = value;
         OnUpdate?.Invoke();
     }
+    
+    public void Clear()
+    {
+        curve = new AnimationCurve();
+        lastClearTime = Time.time;
+    }
 
     private void FixedUpdate()
     {
         if (curve != null)
         {
-            curve.AddKey(Time.time, _currentValue);
+            curve.AddKey(Time.time - lastClearTime, _currentValue);
         }
     }
 }

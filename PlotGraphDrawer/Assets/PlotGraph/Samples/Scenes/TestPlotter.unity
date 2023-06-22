@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754170761}
-  - component: {fileID: 754170760}
+  - component: {fileID: 754170763}
   - component: {fileID: 754170762}
   m_Layer: 0
   m_Name: TestPlot
@@ -235,18 +235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &754170760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754170759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fee2b191fe50a542b0e34ab1d3bf653, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &754170761
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +259,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 754170759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3da3e2612caf734e8c0da5b28994702, type: 3}
+  m_Script: {fileID: 11500000, guid: f598c1d56f09c6447b5e109b2d78160f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &754170763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754170759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea8c2bccfaea9443b89388e5278949a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225

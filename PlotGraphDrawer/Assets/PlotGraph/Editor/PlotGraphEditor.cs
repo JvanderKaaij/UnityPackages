@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -10,6 +11,7 @@ public class PlotGraphEditor:EditorWindow
     public VisualTreeAsset uxml;
     private CurveField curveView;
     private PlotGraph plotGraph;
+    private PlotGraph prevPlotGraph;
     
     [MenuItem("Window/Custom Plot Graph")]
     public static void ShowWindow()
@@ -17,29 +19,42 @@ public class PlotGraphEditor:EditorWindow
         GetWindow(typeof(PlotGraphEditor));
     }
 
+    public void Update()
+    {
+        if (!Application.isPlaying) return;
+        
+        plotGraph = Selection.activeGameObject?.GetComponent<PlotGraph>();
+        
+        if (plotGraph)
+        {
+            if(plotGraph.OnUpdate == null){
+                plotGraph.OnUpdate += Draw;
+            }
+            prevPlotGraph = plotGraph;
+            Draw();
+        }else if(prevPlotGraph.OnUpdate != null)
+        {
+            prevPlotGraph.OnUpdate -= Draw;
+        }
+
+    }
+
     public void OnEnable()
     {
         var root = rootVisualElement;
         uxml.CloneTree(root);
         curveView = root.Q<CurveField>("plot_curve");
-        ObjectField plotGraphObj = root.Q<ObjectField>("plot_object");
-        plotGraphObj.objectType = typeof(PlotGraph);
-        plotGraphObj.RegisterValueChangedCallback(x =>
-        {
-            plotGraph = (PlotGraph)plotGraphObj.value;
-            if (plotGraph != null)
-            {
-                plotGraph.OnUpdate += Draw;
-                Draw();
-            }
-        });
-        
-        var save_btn = root.Q<Button>("save_btn");
 
+        var save_btn = root.Q<Button>("save_btn");
         save_btn.clicked += () =>
         {
             OpenFilePicker();
-            // SaveCurve(save_path.value);
+        };
+        
+        var clear_btn = root.Q<Button>("clear_btn");
+        clear_btn.clicked += () =>
+        {
+            plotGraph.Clear();
         };
     }
 
@@ -64,8 +79,9 @@ public class PlotGraphEditor:EditorWindow
             csv.AppendLine($"{kf.time},{kf.value}");
         }
         string csvString = csv.ToString();
-        
-        File.WriteAllText(path, csvString);
+        if(path != null){
+            File.WriteAllText(path, csvString);
+        }
         Debug.Log($"Successfully stored the graph values: {path}");
     }
     
